@@ -60,20 +60,23 @@ public class CustomerServiceImpl implements CustomerService {
 				if(cab.getAvailable())
 				{
 					assignedDriver= driver;
-					assignedCab= driver.getCab();
-					assignedDriverId= driver.getDriverId();
+					assignedCab= cab;
+					assignedDriverId= assignedDriver.getDriverId();
 				}
 			}
 		}
 		if(assignedDriverId==Integer.MAX_VALUE)
+		{
 			throw new Exception("No value present");
+		}
+
 
 		bookedTrip.setDriver(assignedDriver);
 		assignedCab.setAvailable(false);
 		assignedDriver.setCab(assignedCab);
-		tripBookingRepository2.save(bookedTrip);
-		driverRepository2.save(assignedDriver);
 		customerRepository2.save(assignedCustomer);
+		driverRepository2.save(assignedDriver);
+		tripBookingRepository2.save(bookedTrip);
 
 		return bookedTrip;
 	}
@@ -89,9 +92,9 @@ public class CustomerServiceImpl implements CustomerService {
 		assignedCab.setAvailable(true);
 		assignedDriver.setCab(assignedCab);
 
-		tripBookingRepository2.save(bookedTrip);
-		driverRepository2.save(assignedDriver);
 		customerRepository2.save(bookedTrip.getCustomer());
+		driverRepository2.save(assignedDriver);
+		tripBookingRepository2.save(bookedTrip);
 
 	}
 
