@@ -13,7 +13,7 @@ public class Cab{
     private boolean available;
 
     public Cab() {
-        this.perKmRate = 0;
+        this.perKmRate = 10;
         this.available = true;
     }
 

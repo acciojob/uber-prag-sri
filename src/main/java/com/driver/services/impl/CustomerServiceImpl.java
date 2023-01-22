@@ -67,15 +67,13 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		if(assignedDriverId==Integer.MAX_VALUE)
 			throw new Exception("No value present");
-		else
-		{
-			bookedTrip.setDriver(assignedDriver);
-			assignedCab.setAvailable(false);
-			assignedDriver.setCab(assignedCab);
-			tripBookingRepository2.save(bookedTrip);
-			driverRepository2.save(assignedDriver);
-			customerRepository2.save(assignedCustomer);
-		}
+
+		bookedTrip.setDriver(assignedDriver);
+		assignedCab.setAvailable(false);
+		assignedDriver.setCab(assignedCab);
+		tripBookingRepository2.save(bookedTrip);
+		driverRepository2.save(assignedDriver);
+		customerRepository2.save(assignedCustomer);
 
 		return bookedTrip;
 	}
