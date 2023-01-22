@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 		}
 		if(assignedDriverId==Integer.MAX_VALUE)
-			throw new Exception("No cab available!");
+			throw new Exception("No value present");
 		else
 		{
 			bookedTrip.setDriver(assignedDriver);
@@ -93,6 +93,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 		tripBookingRepository2.save(bookedTrip);
 		driverRepository2.save(assignedDriver);
+		customerRepository2.save(bookedTrip.getCustomer());
 
 	}
 
