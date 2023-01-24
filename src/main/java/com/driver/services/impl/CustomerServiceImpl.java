@@ -65,6 +65,8 @@ public class CustomerServiceImpl implements CustomerService {
 				customer.setTripBookingList(tripBookingList);
 
 				tripBookingList= driver.getTripBookingList();
+				if(tripBookingList==null)
+					tripBookingList= new ArrayList<>();
 				tripBookingList.add(bookedTrip);
 				driver.setTripBookingList(tripBookingList);
 
