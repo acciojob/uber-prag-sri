@@ -59,6 +59,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 				Customer customer= customerRepository2.findById(customerId).get();
 				List<TripBooking> tripBookingList= customer.getTripBookingList();
+				if(tripBookingList==null)
+					tripBookingList= new ArrayList<>();
 				tripBookingList.add(bookedTrip);
 				customer.setTripBookingList(tripBookingList);
 
@@ -84,6 +86,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 		TripBooking bookedTrip= tripBookingRepository2.findById(tripId).get();
 		bookedTrip.setStatus(TripStatus.CANCELED);
+		bookedTrip.setBill(0);
 		Driver assignedDriver= bookedTrip.getDriver();
 		Cab assignedCab= assignedDriver.getCab();
 		assignedCab.setAvailable(true);
